@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Índice{% endblock %}
+{% block content %}
+<div class="card card-wide">
+  <h1>Formulários disponíveis</h1>
+  <p class="subtitle">8 tipos de formulário POST para geração do dataset</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem">
+    {% for name, path, desc in [
+      ('login',    '/login',    'Autenticação com usuário e senha'),
+      ('register', '/register', 'Cadastro com dados pessoais'),
+      ('search',   '/search',   'Busca com filtros e ordenação'),
+      ('contact',  '/contact',  'Mensagem de contato / suporte'),
+      ('profile',  '/profile',  'Atualização de perfil de usuário'),
+      ('checkout', '/checkout', 'Dados de entrega e pagamento'),
+      ('comment',  '/comment',  'Comentário em artigo / post'),
+      ('products', '/products', 'Filtro de catálogo de produtos'),
+    ] %}
+    <a href="{{ path }}" style="display:block;padding:.75rem 1rem;border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);transition:border-color .15s">
+      <div style="font-family:var(--mono);font-size:13px;font-weight:500;margin-bottom:.2rem">{{ name }}</div>
+      <div style="font-size:12px;color:var(--muted)">{{ desc }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

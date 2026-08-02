@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Comentário{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Deixar comentário</h1>
+  <p class="subtitle">Avalie o produto ou artigo</p>
+  <form method="POST" action="/comment" id="form-comment">
+    <input type="hidden" name="post_id" value="42">
+    <input type="hidden" name="post_type" value="product">
+    <div class="row">
+      <div class="field">
+        <label for="author_name">Nome</label>
+        <input type="text" id="author_name" name="author_name" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label for="author_email">E-mail</label>
+        <input type="email" id="author_email" name="author_email" placeholder="seu@email.com">
+      </div>
+    </div>
+    <div class="field">
+      <label>Avaliação</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="rating" value="1"> 1★</label>
+        <label class="radio-item"><input type="radio" name="rating" value="2"> 2★</label>
+        <label class="radio-item"><input type="radio" name="rating" value="3"> 3★</label>
+        <label class="radio-item"><input type="radio" name="rating" value="4"> 4★</label>
+        <label class="radio-item"><input type="radio" name="rating" value="5" checked> 5★</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="title">Título do comentário</label>
+      <input type="text" id="title" name="title" placeholder="Resuma sua experiência">
+    </div>
+    <div class="field">
+      <label for="body">Comentário</label>
+      <textarea id="body" name="body" placeholder="Conte mais sobre o produto ou artigo..."></textarea>
+    </div>
+    <div class="field">
+      <label>Você recomenda?</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="recommend" value="yes" checked> Sim</label>
+        <label class="radio-item"><input type="radio" name="recommend" value="no"> Não</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Aspectos avaliados</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" name="aspects" value="quality" checked> Qualidade</label>
+        <label class="checkbox-item"><input type="checkbox" name="aspects" value="price"> Custo-benefício</label>
+        <label class="checkbox-item"><input type="checkbox" name="aspects" value="delivery"> Entrega</label>
+        <label class="checkbox-item"><input type="checkbox" name="aspects" value="packaging"> Embalagem</label>
+      </div>
+    </div>
+    <button type="submit">Publicar comentário</button>
+  </form>
+</div>
+{% endblock %}

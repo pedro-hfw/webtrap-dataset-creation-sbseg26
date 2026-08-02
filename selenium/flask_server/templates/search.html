@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Busca{% endblock %}
+{% block content %}
+<div class="card card-wide">
+  <h1>Busca avançada</h1>
+  <p class="subtitle">Encontre produtos com filtros detalhados</p>
+  <form method="POST" action="/search" id="form-search">
+    <div class="field">
+      <label for="q">Termo de busca</label>
+      <input type="text" id="q" name="q" placeholder="ex: notebook gamer, tênis corrida...">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="category">Categoria</label>
+        <select id="category" name="category">
+          <option value="">Todas</option>
+          <option value="eletronicos">Eletrônicos</option>
+          <option value="esportes">Esportes</option>
+          <option value="moda">Moda</option>
+          <option value="casa">Casa e Jardim</option>
+          <option value="livros">Livros</option>
+          <option value="beleza">Beleza</option>
+          <option value="games">Games</option>
+          <option value="brinquedos">Brinquedos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sort">Ordenar por</label>
+        <select id="sort" name="sort">
+          <option value="relevance">Relevância</option>
+          <option value="price_asc">Menor preço</option>
+          <option value="price_desc">Maior preço</option>
+          <option value="newest">Mais recentes</option>
+          <option value="rating">Avaliação</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="min_price">Preço mínimo (R$)</label>
+        <input type="number" id="min_price" name="min_price" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label for="max_price">Preço máximo (R$)</label>
+        <input type="number" id="max_price" name="max_price" placeholder="9999" min="0">
+      </div>
+    </div>
+    <div class="field">
+      <label>Avaliação mínima</label>
+      <div class="range-row">
+        <input type="range" name="min_rating" id="min_rating" min="0" max="5" step="1" value="0"
+               oninput="document.getElementById('rating-val').textContent = this.value + ' estrelas'">
+        <span class="range-val" id="rating-val">0 estrelas</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Condição</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="condition" value="all" checked> Todos</label>
+        <label class="radio-item"><input type="radio" name="condition" value="new"> Novo</label>
+        <label class="radio-item"><input type="radio" name="condition" value="used"> Usado</label>
+        <label class="radio-item"><input type="radio" name="condition" value="refurbished"> Recondicionado</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="brand">Marca</label>
+        <input type="text" id="brand" name="brand" placeholder="ex: Samsung, Nike...">
+      </div>
+      <div class="field">
+        <label for="page">Página</label>
+        <input type="number" id="page" name="page" value="1" min="1">
+      </div>
+    </div>
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+{% endblock %}

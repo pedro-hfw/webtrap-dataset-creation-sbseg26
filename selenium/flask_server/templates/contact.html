@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Contato{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Fale conosco</h1>
+  <p class="subtitle">Envie sua mensagem ou solicitação</p>
+  <form method="POST" action="/contact" id="form-contact">
+    <div class="row">
+      <div class="field">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="seu@email.com">
+      </div>
+    </div>
+    <div class="field">
+      <label for="subject">Assunto</label>
+      <select id="subject" name="subject">
+        <option value="support">Suporte técnico</option>
+        <option value="billing">Cobrança / pagamento</option>
+        <option value="shipping">Entrega / rastreio</option>
+        <option value="return">Devolução / troca</option>
+        <option value="complaint">Reclamação</option>
+        <option value="suggestion">Sugestão</option>
+        <option value="other">Outro</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="order_id">Número do pedido (opcional)</label>
+      <input type="text" id="order_id" name="order_id" placeholder="ex: PED-2024-00123">
+    </div>
+    <div class="field">
+      <label for="priority">Prioridade</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="priority" value="low"> Baixa</label>
+        <label class="radio-item"><input type="radio" name="priority" value="normal" checked> Normal</label>
+        <label class="radio-item"><input type="radio" name="priority" value="high"> Alta</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="message">Mensagem</label>
+      <textarea id="message" name="message" placeholder="Descreva sua solicitação com detalhes..."></textarea>
+    </div>
+    <div class="field">
+      <label>Como prefere ser respondido?</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" name="contact_via" value="email" checked> E-mail</label>
+        <label class="checkbox-item"><input type="checkbox" name="contact_via" value="phone"> Telefone</label>
+        <label class="checkbox-item"><input type="checkbox" name="contact_via" value="whatsapp"> WhatsApp</label>
+      </div>
+    </div>
+    <button type="submit">Enviar mensagem</button>
+  </form>
+</div>
+{% endblock %}

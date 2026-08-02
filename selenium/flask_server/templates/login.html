@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Entrar na conta</h1>
+  <p class="subtitle">Acesse com seu e-mail e senha</p>
+  <form method="POST" action="/login" id="form-login">
+    <div class="field">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="usuario@exemplo.com" autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div class="field">
+      <label>Lembrar acesso</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="remember" value="yes"> Sim</label>
+        <label class="radio-item"><input type="radio" name="remember" value="no" checked> Não</label>
+      </div>
+    </div>
+    <button type="submit">Entrar</button>
+  </form>
+</div>
+{% endblock %}

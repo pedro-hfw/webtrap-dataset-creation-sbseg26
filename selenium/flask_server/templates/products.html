@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Produtos{% endblock %}
+{% block content %}
+<div class="card card-wide">
+  <h1>Filtrar catálogo</h1>
+  <p class="subtitle">Refine sua busca no catálogo de produtos</p>
+  <form method="POST" action="/products" id="form-products">
+    <div class="row">
+      <div class="field">
+        <label for="category">Categoria</label>
+        <select id="category" name="category">
+          <option value="all">Todas</option>
+          <option value="notebooks">Notebooks</option>
+          <option value="smartphones">Smartphones</option>
+          <option value="tablets">Tablets</option>
+          <option value="tvs">TVs</option>
+          <option value="cameras">Câmeras</option>
+          <option value="headphones">Fones de ouvido</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="brand">Marca</label>
+        <select id="brand" name="brand">
+          <option value="">Todas</option>
+          <option value="samsung">Samsung</option>
+          <option value="apple">Apple</option>
+          <option value="lg">LG</option>
+          <option value="sony">Sony</option>
+          <option value="motorola">Motorola</option>
+          <option value="dell">Dell</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="min_price">Preço mínimo (R$)</label>
+        <input type="number" id="min_price" name="min_price" placeholder="0" min="0">
+      </div>
+      <div class="field">
+        <label for="max_price">Preço máximo (R$)</label>
+        <input type="number" id="max_price" name="max_price" placeholder="10000" min="0">
+      </div>
+    </div>
+    <div class="field">
+      <label>Disponibilidade</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="availability" value="all" checked> Todos</label>
+        <label class="radio-item"><input type="radio" name="availability" value="in_stock"> Em estoque</label>
+        <label class="radio-item"><input type="radio" name="availability" value="pre_order"> Pré-venda</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Características</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" name="features" value="free_shipping"> Frete grátis</label>
+        <label class="checkbox-item"><input type="checkbox" name="features" value="discount"> Em promoção</label>
+        <label class="checkbox-item"><input type="checkbox" name="features" value="new"> Lançamento</label>
+        <label class="checkbox-item"><input type="checkbox" name="features" value="best_seller"> Mais vendidos</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Avaliação mínima</label>
+      <div class="range-row">
+        <input type="range" name="min_rating" id="min_rating" min="0" max="5" step="1" value="3"
+               oninput="document.getElementById('prating-val').textContent = this.value + '★'">
+        <span class="range-val" id="prating-val">3★</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="sort">Ordenar por</label>
+        <select id="sort" name="sort">
+          <option value="relevance">Relevância</option>
+          <option value="price_asc">Menor preço</option>
+          <option value="price_desc">Maior preço</option>
+          <option value="newest">Mais recentes</option>
+          <option value="best_seller">Mais vendidos</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="per_page">Itens por página</label>
+        <select id="per_page" name="per_page">
+          <option value="12">12</option>
+          <option value="24" selected>24</option>
+          <option value="48">48</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit">Aplicar filtros</button>
+  </form>
+</div>
+{% endblock %}

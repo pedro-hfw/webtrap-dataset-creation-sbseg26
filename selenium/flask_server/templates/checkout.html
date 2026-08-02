@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<div class="card card-wide">
+  <h1>Finalizar pedido</h1>
+  <p class="subtitle">Endereço de entrega e forma de pagamento</p>
+  <form method="POST" action="/checkout" id="form-checkout">
+    <div class="section-label">Entrega</div>
+    <div class="row">
+      <div class="field">
+        <label for="recipient_name">Nome do destinatário</label>
+        <input type="text" id="recipient_name" name="recipient_name" placeholder="Nome completo">
+      </div>
+      <div class="field">
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" name="cep" placeholder="00000-000">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="street">Rua</label>
+        <input type="text" id="street" name="street" placeholder="Av. Paulista">
+      </div>
+      <div class="field">
+        <label for="number">Número</label>
+        <input type="text" id="number" name="number" placeholder="1000">
+      </div>
+    </div>
+    <div class="field">
+      <label for="complement">Complemento</label>
+      <input type="text" id="complement" name="complement" placeholder="Apto 42, Bloco B...">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="city">Cidade</label>
+        <input type="text" id="city" name="city" placeholder="São Paulo">
+      </div>
+      <div class="field">
+        <label for="state">Estado</label>
+        <select id="state" name="state">
+          <option value="SP">SP</option><option value="RJ">RJ</option>
+          <option value="MG">MG</option><option value="RS">RS</option>
+          <option value="PR">PR</option><option value="SC">SC</option>
+          <option value="BA">BA</option><option value="GO">GO</option>
+          <option value="DF">DF</option><option value="PE">PE</option>
+          <option value="CE">CE</option><option value="PA">PA</option>
+          <option value="MA">MA</option><option value="AL">AL</option>
+          <option value="RN">RN</option><option value="PB">PB</option>
+          <option value="PI">PI</option><option value="MS">MS</option>
+          <option value="SE">SE</option><option value="AP">AP</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="shipping_method">Tipo de entrega</label>
+      <select id="shipping_method" name="shipping_method">
+        <option value="standard">PAC — até 8 dias úteis</option>
+        <option value="express">SEDEX — até 2 dias úteis</option>
+        <option value="same_day">Same-day — hoje</option>
+        <option value="pickup">Retirar na loja</option>
+      </select>
+    </div>
+    <hr class="divider">
+    <div class="section-label">Pagamento</div>
+    <div class="field">
+      <label>Forma de pagamento</label>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="payment_method" value="credit" checked> Crédito</label>
+        <label class="radio-item"><input type="radio" name="payment_method" value="debit"> Débito</label>
+        <label class="radio-item"><input type="radio" name="payment_method" value="pix"> Pix</label>
+        <label class="radio-item"><input type="radio" name="payment_method" value="boleto"> Boleto</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="card_number">Número do cartão</label>
+      <input type="text" id="card_number" name="card_number" placeholder="0000 0000 0000 0000" maxlength="19">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="card_expiry">Validade</label>
+        <input type="text" id="card_expiry" name="card_expiry" placeholder="MM/AA" maxlength="5">
+      </div>
+      <div class="field">
+        <label for="card_cvv">CVV</label>
+        <input type="text" id="card_cvv" name="card_cvv" placeholder="000" maxlength="4">
+      </div>
+    </div>
+    <div class="field">
+      <label for="installments">Parcelas</label>
+      <select id="installments" name="installments">
+        <option value="1">1x sem juros</option>
+        <option value="2">2x sem juros</option>
+        <option value="3">3x sem juros</option>
+        <option value="6">6x sem juros</option>
+        <option value="12">12x com juros</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="coupon">Cupom de desconto</label>
+      <input type="text" id="coupon" name="coupon" placeholder="ex: PROMO10">
+    </div>
+    <button type="submit">Confirmar pedido</button>
+  </form>
+</div>
+{% endblock %}
