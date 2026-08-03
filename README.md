@@ -68,7 +68,9 @@ sudo apt update
 sudo apt install python3-full python3-venv
 ```
 
-Outras dependências podem ser vistas no arquivo `requirements.txt`, a saber:
+Outras dependências podem ser vistas nos arquivos `requirements-flask.txt` e `requirements-requests.txt`, a saber:
+
+**requirements-flask.txt**
 
 ```text
 # Framework Web
@@ -78,17 +80,23 @@ Jinja2==3.1.6
 MarkupSafe==3.0.3
 itsdangerous==2.2.0
 click==8.4.2
-blinker==1.7.0
+blinker==1.9.0
+```
 
+**requirements-requests.txt**
+
+```text
 # Selenium
 selenium==4.46.0
 selenium-wire==5.1.0
+setuptools==69.5.1
 
 # Dependências do selenium-wire
+blinker==1.7.0
 brotli==1.2.0
 certifi==2026.7.22
 cffi==2.1.0
-cryptography==49.0.0
+cryptography==38.0.4
 h11==0.16.0
 h2==4.4.0
 hpack==4.2.0
@@ -96,7 +104,7 @@ hyperframe==6.1.0
 kaitaistruct==0.11
 pyasn1==0.6.4
 pycparser==3.0
-pyOpenSSL==26.3.0
+pyOpenSSL==22.1.0
 PySocks==1.7.1
 zstandard==0.25.0
 attrs==26.1.0
@@ -183,14 +191,26 @@ git clone https://github.com/pedro-hfw/webtrap-dataset-creation-sbseg26.git
 cd webtrap-dataset-creation-sbseg26
 ```
 
-### 2. Crie o ambiente virtual e instale as dependências
+### 2. Crie dois ambientes virtuais e instale as dependências
+
+É preciso utilizar ambientes virtuais separados para o Flask e para o Selenium, devido a conflitos de versão da biblioteca *Blinker*.
 
 ```bash
-python3 -m venv venv
+python3 -m venv venv-flask
 
-source venv/bin/activate
+source venv-flask/bin/activate
 
-pip install -r requirements.txt
+pip install -r requirements-flask.txt
+```
+
+> **Nota**: Antes de criar o segundo ambiente virtual, saia do anterior com `deactivate`.
+
+```bash
+python3 -m venv venv-requests
+
+source venv-requests/bin/activate
+
+pip install -r requirements-requests.txt
 ```
 
 ### 3. Download do `rockyou.txt` (requerido para geradores de login)
@@ -204,6 +224,8 @@ Para fazer sua instalação, siga as instruções em https://github.com/danielmi
 ```bash
 git clone --depth 1 https://github.com/danielmiessler/SecLists.git
 ```
+
+A clonagem pode demorar alguns minutos.
 
 #### 2. Descompactar e mover o `rockyou.txt` para o repositório:
 
@@ -265,12 +287,12 @@ Abaixo está listado como executar cada script:
 
 ### Geradores de Requisições HTTP
 
-#### 1. Navegue ao diretório e ative o ambiente virtual:
+#### 1. Navegue ao diretório e ative o ambiente virtual das requisições:
 
 ```bash
 cd webtrap-dataset-creation-sbseg26
 
-source venv/bin/activate
+source venv-requests/bin/activate
 ```
 
 #### 2. Execute os geradores:
@@ -307,12 +329,12 @@ Captura de requisições legítimas navegando em um site escolhido para coletar 
 
 > **Nota:** Nem todos os sites possuem URLs com parâmetros de consulta (queries), que são as requisições procuradas.
 
-#### 1. Navegue ao diretório e ative o ambiente virtual:
+#### 1. Navegue ao diretório e ative o ambiente virtual das requisições:
 
 ```bash
 cd webtrap-dataset-creation-sbseg26
 
-source venv/bin/activate
+source venv-requests/bin/activate
 ```
 
 #### 2. Entre no diretório do Selenium e execute o código:
@@ -334,15 +356,19 @@ As requisições capturadas poderão ser encontradas em `generated_requests`.
 
 Será necessário utilizar dois terminais para executar o código. 
 
-#### 1. Em um primeiro terminal, inicie o servidor Flask:
+#### 1. Em um primeiro terminal, entre no diretório e ative o ambiente virtual do Flask:
 
 ```bash
 cd webtrap-dataset-creation-sbseg26
 
-source venv/bin/activate
+source venv-flask/bin/activate
 
 cd selenium/flask_server
+```
 
+#### 2. Inicie o servidor Flask:
+
+```bash
 python3 app.py           # atua em 127.0.0.1:5000 por padrão
 python3 app.py -e        # exposição em 0.0.0.0 (permite acesso externo)
 python3 app.py -p 8080   # usar outra porta
@@ -360,8 +386,8 @@ sudo -i
 # Navegue até o diretório do repositório
 cd /home/{SEU_USUARIO}/webtrap-dataset-creation-sbseg26
 
-# Ative o ambiente virtual
-source venv/bin/activate
+# Ative o ambiente virtual do Flask
+source venv-flask/bin/activate
 
 # Navegue até o diretório do Flask
 cd selenium/flask_server
@@ -370,15 +396,19 @@ cd selenium/flask_server
 python3 app.py -p {PORTA}
 ```
 
-#### 2. No segundo terminal, execute o código:
+#### 3. No segundo terminal, entre no diretório e ative o ambiente virtual das requisições:
 
 ```bash
 cd webtrap-dataset-creation-sbseg26
 
-source venv/bin/activate
+source venv-requests/bin/activate
 
 cd selenium
+```
 
+#### 4. Execute o código:
+
+```bash
 # Para tráfego benigno
 python3 valid_selenium_flask.py -r 10
 
