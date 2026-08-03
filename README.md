@@ -41,11 +41,11 @@ Este README está organizado da seguinte forma:
 ### Geração de Requisições, Selenium e Flask
 
 - Linux (Ubuntu 22.04+, Debian 12+ ou equivalente)
-- CPU: mínimo de 2 núcleos (recomendado: 4+)
-- RAM: mínimo de 2 GB (recomendado: 4 GB+)
+- CPU: mínimo de 4 núcleos (recomendado: 8+)
+- RAM: mínimo de 4 GB (recomendado: 8 GB+)
 - Espaço em disco: mínimo de 5 GB
 - Interface de rede
-
+- Ambiente bare-metal
 
 ## Software
 
@@ -183,6 +183,8 @@ webtrap-dataset-creation-sbseg26/
 
 # Instalação
 
+⚠️ **ATENÇÃO:** Para garantir a reprodutibilidade dos códigos, faça a instalação do repositório na máquina host (ambiente bare-metal). A conexão entre Firefox e Geckodriver (para os scripts com Selenium) demonstrou problemas na execução dos testes em máquinas virtuais. 
+
 ### 1. Clone o repositório e entre em seu diretório
 
 ```bash
@@ -244,9 +246,11 @@ No final, é necessário que `rockyou.txt` esteja na mesma pasta que os geradore
 
 Instale de acordo com sua preferência via apt ou manualmente no GitHub (recomendado), escolhendo a versão correspondente ao seu Linux.
 
-Os códigos foram executados utilizando a versão 0.37.1 do geckodriver.
+Os códigos foram executados utilizando a versão 0.37.1 do geckodriver e 153.0.1 do firefox.
 
 Instalação no GitHub: https://github.com/mozilla/geckodriver/releases
+
+> **Nota**: O arquivo de instalação pode aparecer no diretório `Downloads`, execute os comandos nele se necessário.
 
 Após a instalação manual, siga os passos:
 
