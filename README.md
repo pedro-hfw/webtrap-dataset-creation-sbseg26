@@ -308,18 +308,34 @@ Cada gerador aceita as seguintes flags:
 
 Exemplos de execução:
 
+**Benigno**
+
 ```bash
-# Benigno
 python3 valid_search_gets.py -r 3000
+```
+```bash
 python3 valid_login_posts.py -r 1000
+```
+```bash
 python3 valid_forum_gets.py  -r 3000
+```
 
-# Malicioso (payload padrão: SQLI_TERMS)
+**Malicioso (payload padrão: SQLI_TERMS)**
+
+```bash
 python3 anomalous_search_gets.py -r 3000
+```
+```bash
 python3 anomalous_search_gets.py -r 3000 -s
+```
+```bash
 python3 anomalous_search_gets.py -r 3000 -d
+```
 
+```bash
 python3 anomalous_login_posts.py -r 1000
+```
+```bash
 python3 anomalous_forum_gets.py  -r 3000
 ```
 
@@ -372,10 +388,19 @@ cd selenium/flask_server
 
 #### 2. Inicie o servidor Flask:
 
+Exemplos:
+
 ```bash
-python3 app.py           # atua em 127.0.0.1:5000 por padrão
-python3 app.py -e        # exposição em 0.0.0.0 (permite acesso externo)
-python3 app.py -p 8080   # usar outra porta
+# atuando em 127.0.0.1:5000 por padrão
+python3 app.py
+```
+```bash
+# exposição em 0.0.0.0 (permite acesso externo)
+python3 app.py -e
+```
+```bash
+# usando outra porta
+python3 app.py -p 8080   
 ```
 
 > É possível utilizar as flags `-e` para expor o Flask na rede ou `-p` para alterar a porta.
@@ -415,7 +440,8 @@ cd selenium
 ```bash
 # Para tráfego benigno
 python3 valid_selenium_flask.py -r 10
-
+```
+```bash
 # Para tráfego malicioso (padrão: SQLI_TERMS)
 python3 anomalous_selenium_flask.py -r 20
 ```
